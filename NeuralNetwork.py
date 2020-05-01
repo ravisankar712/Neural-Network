@@ -122,10 +122,24 @@ class NeuralNetwork():
 		return child
 
 	def Mutate(self):
+# 		for i in range(len(self.weights)):
+# 			if np.random.random() < self.mutation_rate:
+# 				self.weights[i] += np.random.normal(0 , 0.1, self.weights[i].shape)
+# 		for i in range(len(self.biases)):
+# 			if np.random.random() < self.mutation_rate:
+# 				self.biases[i] += np.random.normal(0 , 0.1, self.biases[i].shape)
+	
 		for i in range(len(self.weights)):
-			if np.random.random() < self.mutation_rate:
-				self.weights[i] += np.random.normal(0 , 0.1, self.weights[i].shape)
+			row, col = self.weights[i].shape
+			for x in range(row):
+				for y in range(col):
+					if np.random.random() < self.mutation_rate:
+						self.weights[i][x, y] += np.random.normal(0 , 0.1)
 		for i in range(len(self.biases)):
-			if np.random.random() < self.mutation_rate:
-				self.biases[i] += np.random.normal(0 , 0.1, self.biases[i].shape)
+			row = self.biases[i].shape[0]
+			for x in range(row):
+				if np.random.random() < self.mutation_rate:
+					self.biases[i][x] += np.random.normal(0 , 0.1)
+
+
 	
